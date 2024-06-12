@@ -218,6 +218,10 @@ runs:
         done
 
         network=$(docker network inspect kind -f "{{(index .IPAM.Config 0).Subnet}}" | cut -d '.' -f1,2)
+        echo $network
+        echo "$(docker network inspect kind -f '{{(index .IPAM.Config 0).Subnet}}'"
+        echo "$(docker network inspect -f '{{.IPAM.Config}}' kind)"
+         
         cat <<EOF >> ./metallb-crds.yaml
         apiVersion: metallb.io/v1beta1
         kind: IPAddressPool
